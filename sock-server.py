@@ -52,11 +52,11 @@ def exchange(money):
 
 
 date_time = datetime.datetime.now()
-date = (date_time.strftime("%d %b %Y, %X %p"))
+date = (date_time.strftime("%d %b %Y, %I:%M %p"))
 
 s = socket.socket(socket.AF_INET,
                 socket.SOCK_STREAM)
-s.bind(('158.108.228.6',10001))
+s.bind(('192.168.1.106',10001))
 s.listen(1)
 
 sock,info = s.accept()
