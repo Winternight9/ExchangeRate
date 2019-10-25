@@ -3,7 +3,6 @@ import time
 import datetime 
 
 
-
 def exchange(money):
     value = float(money[0])
     currency = money[1]
@@ -51,10 +50,13 @@ def exchange(money):
 
     return listcurrency[0],listcurrency[1],listcurrency[2]
 
-        
+
+date_time = datetime.datetime.now()
+date = (date_time.strftime("%d %b %Y, %X %p"))
+
 s = socket.socket(socket.AF_INET,
                 socket.SOCK_STREAM)
-s.bind(('10.2.46.148',10001))
+s.bind(('158.108.228.6',10001))
 s.listen(1)
 
 sock,info = s.accept()
@@ -62,6 +64,7 @@ msg=sock.recv(1024)
 
 value = msg.decode().split(" ")
 other1,other2,other3 = exchange(value)
-sock.send(bytes(str.encode(f"{value[0]} {value[1]} = {other1}\n        = {other2} \n        ={other3}")))
+
+sock.send(bytes(str.encode(f"{date} \n{value[0]} {value[1]} = {other1}\n         = {other2} \n         = {other3}")))
 
 time.sleep(0.3)
